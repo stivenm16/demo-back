@@ -1,20 +1,22 @@
 import express from 'express'
 
 const usersRouter = express.Router()
-
+let users = []
 usersRouter.get('/users', (req, res) => {
+  console.log(users)
   res.json(users)
 })
 
-// usersRouter.get('/getAllUsers', getAllUsers)
-
 usersRouter.post('/users', (req, res) => {
-  const newUser = req.body
-  users.push(newUser)
-  res.status(201).json(newUser)
+  try {
+    const newUser = req.body
+    users.push(newUser)
+    res.status(201).json(newUser)
+  } catch (e) {
+    console.log(e)
+  }
 })
 
-// Update a user by ID
 usersRouter.put('/users/:id', (req, res) => {
   const { id } = req.params
   const updatedUserInfo = req.body
@@ -26,7 +28,6 @@ usersRouter.put('/users/:id', (req, res) => {
   res.json(users.find((user) => user.id === parseInt(id)))
 })
 
-// Delete a user by ID
 usersRouter.delete('/users/:id', (req, res) => {
   const { id } = req.params
 
