@@ -3,7 +3,6 @@ import express from 'express'
 const usersRouter = express.Router()
 let users = []
 usersRouter.get('/users', (req, res) => {
-  console.log(users)
   res.json(users)
 })
 
